@@ -1,0 +1,58 @@
+function validateform2(){  
+var uname=document.regform.uname.value;  
+var psw=document.regform.psw.value;
+var name=document.regform.name.value;
+var x=document.regform.email.value;
+var phone=document.regform.phone.value;
+var atposition=x.indexOf("@");  
+var dotposition=x.lastIndexOf(".");
+if (uname==null || uname==""){  
+  alert("Name can't be blank");  
+  return false;  
+else if(psw.length<8){  
+  alert("Password must be at least 8 characters long.");  
+  return false;  
+else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+  alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition);  
+  return false;  
+  }  
+else if(phone.length<8){  
+  alert("Number must be 10 digits.");  
+  return false;   
+  }
+}
+}}
+var modal = document.getElementById('id02');
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}

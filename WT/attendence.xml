@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="attend.xsl"?>
+
+<a>
+  <attendence>
+    <Regno>114</Regno>
+    <Student>Sudhakar</Student>
+    <class>ITB</class>
+    <year>3</year>
+    <cgpa>7.5</cgpa>
+    <dob>1999</dob>
+  </attendence>
+  <attendence>
+    <Regno>126</Regno>
+    <Student>Viswesh </Student>
+    <class>ITB</class>
+    <year>3</year>
+    <cgpa>8.9</cgpa>
+    <dob>1998</dob>
+  </attendence>
+  <attendence>
+    <Regno>115</Regno>
+    <Student>Sudharshan</Student>
+    <class>ITB</class>
+    <year>3</year>
+    <cgpa>9.90</cgpa>
+    <dob>1999</dob>
+  </attendence>
+  <attendence>
+    <Regno>123</Regno>
+    <Student>Veeramani</Student>
+    <class>ITA</class>
+    <year>3</year>
+    <cgpa>10.20</cgpa>
+    <dob>1990</dob>
+  </attendence>
+  
+</a>
+

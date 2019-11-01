@@ -1,0 +1,424 @@
+register.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration form</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+<script type="text/javascript">
+function check(myform){
+var regex = /^\w{3,9}$/;
+if (myform.fullname.value == "" || myform.fullname.value == null){
+alert("Name is mandatory and minimum of 3 characters and maximum of 9 characters");
+return false;
+}
+else if(regex.test(myform.fullname.value) == false){
+alert("Name must be in alphabets only");
+myform.fullname.focus();
+return false;
+}
+var regex1 = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+if (myform.myphone.value == "" || myform.myphone.value == null){
+alert("Phone number is mandatory");
+return false;
+}
+else if(regex1.test(myform.myphone.value) == false){
+alert("This is not a valid phone number");
+return false;
+}
+if (( myform.gender[0].checked == false ) && ( myform.gender[1].checked == false ) ) {
+alert ( "Please choose your Gender: Male or Female" );
+return false;
+}
+var regex3 = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+if (myform.email.value == "" || myform.email.value == null){
+alert("Mail id is mandatory");
+return false;
+}
+else if(regex3.test(myform.email.value) == false){
+alert("This is not a valid email id!");
+return false;
+}
+var regex2= /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,12}$/;
+if (myform.pass.value == "" || myform.pass.value == null){
+alert("Password is mandatory");
+return false;
+312217205039
+JANANI R
+}
+else if(regex2.test(myform.pass.value)==false){
+alert("This is not a valid password");
+return false;
+}
+}
+</script><h1> Registration Form </h1>
+<table style="width:100%">
+<form name="formvalidate" action="RegisterCon.jsp" method="POST" onSubmit="return
+check(formvalidate)">
+<tr>
+<td>Full Name</td>
+<td><input type="text" name="fullname" /></td>
+</tr> <tr><td>Username</td>
+<td><input type="text" name="userName" /></td></tr>
+<tr><td>Create Password:</td>
+<td><input type="password" id="pwd" name="pass">
+</td></tr><tr>
+<td>Phone Number:</td>
+<td><input type="text" id="myphone" placeholder="phone number" name="myphone">
+</td></tr>
+<tr><td>Address:</td>
+<td><textarea rows="5" cols="50" name="address" placeholder="Address"></textarea>
+</td></tr><tr>
+<td>Gender:</td>
+<td>
+<input type="radio" name="gender" value="Male" size="40">Male
+<input type="radio" name="gender" value="Female" size="40">Female
+<input type="radio" name="gender" value="Others" size="40">Others
+</td></tr> <tr>
+<td>Age</td>
+<td><input type="text" name="age" /></td>
+</tr><tr><td>Qualification</td>
+<td><input type="text" name="qual" /></td>
+</tr><tr><td>Percentage</td>
+<td><input type="text" name="percent" /></td>
+</tr><tr><td>Year Passed</td>
+<td><input type="text" name="yop" /></td></tr><tr>
+<td>E-mail: </td> <td>
+<input type="text" placeholder="email" name="email">
+</td></tr><tr><td>
+<h4><button class="button" value="Submit">Submit</button></h4></td></tr>
+</table></form></table></body></html>
+312217205039
+JANANI R
+RegisterCon.jsp
+<%@ page import ="java.sql.*" %>
+<%
+String fullname = request.getParameter("fullname");
+String userName = request.getParameter("userName");
+String pass = request.getParameter("pass");
+String address = request.getParameter("address");
+String age = request.getParameter("age");
+String qual = request.getParameter("qual");
+String percent = request.getParameter("percent");
+String yop = request.getParameter("yop"); %>
+<%
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root",
+"ishwarya");
+Statement st = con.createStatement();
+int i = st.executeUpdate("insert into student(name, userName, pass, addr, age, qual,percent,year)
+values ('" + fullname + "','" + userName + "','" + pass + "','" + address + "','" + age + "', '" + qual +"','"
++ percent + "', '" +yop+"') ");
+out.println("Data is inserted");
+if (i > 0) {
+response.sendRedirect("welcome.jsp");
+} else {
+response.sendRedirect("index.jsp");
+}
+}
+312217205039
+JANANI R
+catch(Exception e){
+out.println(e);
+e.printStackTrace();
+}
+%>
+welcome.jsp
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+*{
+background-color: pink;
+}
+</style>
+</head>
+<body><h1 align="center">Registration is Successful.
+Please Login Here <a href='index.jsp'>Go to Login</a></h1>
+</body>
+</html>
+index.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Online Exam</title>
+<style>
+*{
+background-color: pink;
+}
+</style>
+</head>
+<body>
+<form method="post" action="login.jsp">
+312217205039
+JANANI R
+<center>
+<table border="1" width="30%" cellpadding="3">
+<thead>
+<tr> <th colspan="2">Login Here</th>
+</tr></thead><tbody>
+<tr> <td>User Name</td>
+<td><input type="text" name="uname" value="" /></td></tr>
+<tr><td>Password</td>
+<td><input type="password" name="pass" value="" /></td></tr>
+<tr><td><input type="submit" value="Login" /></td>
+<td><input type="reset" value="Reset" /></td></tr>
+<tr><td colspan="2">Yet Not Registered!!
+<a href="register.jsp">Register Here</a></td> </tr>
+</tbody></table> </center></form></body></html>
+login.jsp
+<%@ page import ="java.sql.*" %>
+<%
+String userid = request.getParameter("uname");
+String pwd = request.getParameter("pass");
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root",
+"ishwarya");
+Statement st = con.createStatement();
+ResultSet rs;
+rs = st.executeQuery("select * from student where userName='" + userid + "' and pass='" + pwd +
+"'");
+if (rs.next()) {
+session.setAttribute("userid", userid);
+response.sendRedirect("success.jsp");
+} else {
+out.println("Invalid password <a href='index.jsp'>try again</a>");
+}
+%>
+312217205039
+JANANI R
+success.jsp
+<%
+if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+%>
+You are not logged in<br/>
+<a href="index.jsp">Please Login</a>
+<%}
+else {
+%>
+Welcome <%=session.getAttribute("userid")%>
+<a href='logout.jsp'>Log out</a>
+<%
+}%>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body><style>
+*{
+background-color: pink;}
+</style>
+<form action="validate1.jsp" method="post">
+<br/><br/><label>Question1</label><br/>
+What is the capital of India?<br/>
+<input type="radio" name="q1" value="a">Delhi
+<input type="radio" name="q1" value="b">Chennai
+<input type="radio" name="q1" value="c">Mumbai<br/><br/>
+<label>Question2</label><br/>
+Where is Mexico located?<br/>
+<input type="radio" name="q2" value="a">North America
+<input type="radio" name="q2" value="b">South America
+<input type="radio" name="q2" value="c">Africa<br/><br/>
+<label>Question3</label><br/>
+What is the capital of Indonesia?<br/>
+<input type="radio" name="q3" value="a">Jakarta
+<input type="radio" name="q3" value="b">Meda
+<input type="radio" name="q3" value="c">Bali<br/><br/>
+<label>Question4</label><br/>
+HTML stands for?<br/>
+<input type="radio" name="q4" value="a">Hyper Text Markup Language
+<input type="radio" name="q4" value="b">High Text Markup Language
+<input type="radio" name="q4" value="c">Hyper Tabular Markup Language <br/>
+<label>Question5</label><br/>
+www is based on which model?<br/>
+<input type="radio" name="q5" value="a">Local Server
+<input type="radio" name="q5" value="b">Client Server
+312217205039
+JANANI R
+<input type="radio" name="q5" value="c">3-tier<br/><br/>
+<input type="submit" value="Next Page" /><br/><br/>
+<input type="reset" value="Reset" />
+</form></body></html>
+validate1.jsp
+<%@ page import ="java.sql.*" %>
+<%
+String qa1=request.getParameter("q1");
+String qa2=request.getParameter("q2");
+String qa3=request.getParameter("q3");
+String qa4=request.getParameter("q4");
+String qa5=request.getParameter("q5");
+int count=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root",
+"ishwarya");
+Statement st = con.createStatement();
+ResultSet rs;
+rs = st.executeQuery("select * from answer");
+while(rs.next()){
+if(qa1.equals(rs.getString("qa1"))){
+c1=c1+1;
+}
+if(qa2.equals(rs.getString("qa2"))){
+c2=c2+1;
+}
+if(qa3.equals(rs.getString("qa3"))){
+c3=c3+1;
+}
+if(qa4.equals(rs.getString("qa4"))){
+c4=c4+1;
+}
+if(qa5.equals(rs.getString("qa5"))){
+312217205039
+JANANI R
+c5=c5+1;
+}
+}
+count=c1+c2+c3+c4+c5;
+session.setAttribute("c1",c1);
+session.setAttribute("c2",c2);
+session.setAttribute("c3",c3);
+session.setAttribute("c4",c4);
+session.setAttribute("c5",c5);
+session.setAttribute("count",count);
+}catch(Exception e){
+out.println(e);
+}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{
+background-color: pink;
+}
+</style>
+</head>
+<body>
+<form action="validate.jsp" method="post">
+<br/><br/><label>Question6</label><br/>
+Web pages starts with which ofthe following tag?<br/>
+<input type="radio" name="q6" value="a">html
+<input type="radio" name="q6" value="b">head
+<input type="radio" name="q6" value="c">title<br/><br/>
+<label>Question7</label><br/>
+The latest HTML standard is<br/>
+<input type="radio" name="q7" value="a">XML
+<input type="radio" name="q7" value="b">SGML
+<input type="radio" name="q7" value="c">HTML 5.0<br/><br/>
+<label>Question8</label><br/>
+JSP stands for<br/>
+<input type="radio" name="q8" value="a">Java Server Pages
+<input type="radio" name="q8" value="b">Javascript Server Pages
+<input type="radio" name="q8" value="c">Java Server Processor<br/><br/>
+<label>Question9</label><br/>
+The body tag usually used after<br/>
+<input type="radio" name="q9" value="a">head
+<input type="radio" name="q9" value="b">form
+<input type="radio" name="q9" value="c">title<br/><br/>
+<label>Question 10</label><br/>
+XSL is<br/>
+312217205039
+JANANI R
+<input type="radio" name="q10" value="a">extensible solution language
+<input type="radio" name="q10" value="b">a language which is not used in XML
+<input type="radio" name="q10" value="c">an XML based language to create style
+sheets<br/><br/>
+<input type="submit" value="Submit" /><br/><br/>
+<input type="reset" value="Reset" /></form></body></html>
+validate.jsp
+<%@ page import ="java.sql.*" %>
+<h3 align="right"><a href='logout.jsp'>Log out</a> </h3>
+<%
+String qa6=request.getParameter("q6");
+String qa7=request.getParameter("q7");
+String qa8=request.getParameter("q8");
+String qa9=request.getParameter("q9");
+String qa10=request.getParameter("q10");
+int total=0,c6=0,c7=0,c8=0,c9=0,c10=0;
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root",
+"ishwarya");
+Statement st = con.createStatement();
+ResultSet rs;
+rs = st.executeQuery("select * from answer");
+while(rs.next()){
+if(qa6.equals(rs.getString("qa6"))){
+c6=c6+1;
+}
+if(qa7.equals(rs.getString("qa7"))){
+c7=c7+1;}
+if(qa8.equals(rs.getString("qa8"))){
+c8=c8+1;
+}
+if(qa9.equals(rs.getString("qa9"))){
+312217205039
+JANANI R
+c9=c9+1;
+}
+if(qa10.equals(rs.getString("qa10"))){
+c10=c10+1;
+}
+}
+Integer s=(Integer)session.getAttribute("count");
+total=(s+c6+c7+c8+c9+c10);
+session.setAttribute("c6",c6);
+session.setAttribute("c7",c7);
+session.setAttribute("c8",c8);
+session.setAttribute("c9",c9);
+session.setAttribute("c10",c10);
+session.setAttribute("total",total);
+int j = st.executeUpdate("update student set mark='"+ total +"' where
+userName='"+session.getAttribute("userid") +"'");
+out.println("<h2>Your score is " +total);
+out.println("<br>");
+if(total<5){
+out.println("Status:Fail");
+}
+else{
+out.println("Status:Pass");
+}
+out.println("</h2>");
+}catch(Exception e){
+out.println(e);
+}
+%>
+<!DOCTYPE html>
+<html>
+<head><style>
+table,tr,td{
+text-align: center;
+border: 1px solid black;}
+*{
+background-color: #78FF33;}
+</style>
+</head><body><h2 align="center">RESULT</h2>
+<table border="1" align="center" style="width: 50%">
+<th>Q.No.</th><th>Score</th>
+<tr><td>Q1</td><td><%=session.getAttribute("c1")%></td>
+</tr><tr><td>Q2</td><td><%=session.getAttribute("c2")%></td>
+</tr><tr><td>Q3</td><td><%=session.getAttribute("c3")%></td>
+</tr><tr><td>Q4</td><td><%=session.getAttribute("c4")%></td>
+</tr><tr><td>Q5</td><td><%=session.getAttribute("c5")%></td>
+</tr><tr><td>Q6</td><td><%=session.getAttribute("c6")%></td>
+</tr><tr><td>Q7</td><td><%=session.getAttribute("c7")%></td>
+</tr><tr><td>Q8</td><td><%=session.getAttribute("c8")%></td>
+312217205039
+JANANI R
+</tr><tr><td>Q9</td><td><%=session.getAttribute("c9")%></td>
+</tr><tr><td>Q10</td><td><%=session.getAttribute("c10")%></td>
+</tr><tr><th>TOTAL SCORE</th><th><%=session.getAttribute("total")%></th>
+</tr> </table><h2 align="center">Thank you for taking up the test!</h2>
+</body></html>
+logout.jsp
+<%
+session.setAttribute("userid", null);
+session.invalidate();
+response.sendRedirect("index.jsp");
+%>

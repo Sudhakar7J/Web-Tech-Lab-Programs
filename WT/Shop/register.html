@@ -1,0 +1,306 @@
+<html>
+<head>
+		<script type="text/javascript">
+			function loadXMLDoc()
+			{
+				var xmlhttp;
+				var k=document.getElementById("uname").value;
+				var urls="checkusername.jsp?ver="+k;
+				if (window.XMLHttpRequest)
+				{
+					xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4)
+					{
+						document.getElementById("err").innerHTML=xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("GET",urls,true);
+				xmlhttp.send();
+			}
+			function loadXMLVal()
+			{
+				var xmlhttp;
+				var l=document.getElementById("pass").value;
+				var urls="checkpassword.jsp+pass="+l;
+				if (window.XMLHttpRequest)
+				{
+					xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4)
+					{
+						document.getElementById("pswd").innerHTML=xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("GET",urls,true);
+				xmlhttp.send();
+			} 
+			  $(document).ready(function() {
+				  $("#MyModal").modal();
+			  });
+		</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ShoppingCentre</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Notable&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap');
+* {box-sizing: border-box;}
+		body{
+  				background-position: center center;
+  				background-repeat: no-repeat;
+  				background-attachment: fixed;
+				  background-size: cover;
+				  
+			}
+
+	.bg-image {
+  /* The image used */
+  background-image: url("med.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+	.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;}
+
+		div.opp{
+				  padding:50px;
+				  margin:10px;
+				  border: 1px solid green;
+				  font-size:45px;
+				  background-color:#708090;
+				  color:white;
+				  font-family: 'Montserrat Alternates', sans-serif;
+				  text-align:left;
+				}
+		div.form-container{
+			width:400px;
+			height: auto;
+			padding: 40px 30px;
+			background-color:  #DCC7AA;
+			border-radius: 10px;
+			box-shadow: 0 0 10px 0 #000;
+			margin: auto;
+			position: relative;
+		}
+
+		.user-img{
+			background: url() no-repeat;
+			width: 70px;
+			height: 70px;
+			background-size: 100%;
+			position: absolute;
+			top: -40px;
+			left: 110px;
+		}
+
+		ul.list{
+			list-style-type: none;
+			text-align: center;
+		}
+
+		ul.list li{
+			width: 250px;
+			margin-bottom: 15px;
+		}
+
+		ul.list li input{
+			width: 250px;
+			text-align: center;
+			padding: 8px 0px;
+			border: none;
+			background-color: white;
+			border-radius: 5px;
+		}
+		ul.list li input[type="button"]{
+			background-color: dodgerblue;
+			color: white;
+		}
+
+		button{
+			border: none;
+  border-radius: 25px;
+  outline: none;
+  padding: 12px 16px;
+  background-color: dodgerblue;
+  cursor: pointer;
+  color: white;
+		}
+		button :hover {
+  background-color: #ddd;
+}
+
+cnl-button{
+			border: none;
+  border-radius: 25px;
+  outline: none;
+  padding: 12px 16px;
+  background-color:#708090;
+  cursor: pointer;
+  color: white;
+		}
+	</style>
+</head>
+<body onload="document.registration.uname.focus();">
+		<div class="opp">
+				<header><img src="img/logo.png" alt="logo"  width="70px" height="70px">
+				  ShoppingCentre.in</header>
+				</div>
+	<div class="bg-image"></div>
+	<div class="bg-text">
+	<form action="Register" method="post" name="registration" <!--onSubmit="return formValidation();"-->>
+	<div class="form-container">
+		<ul class="list">
+			<li style="color: white;font-size:45px">Register</li>
+			<li><input class="form-control" id="uname" type="text" placeholder="Enter Username" name="uname" required autocomplete="off" onkeyup="loadXMLDoc()">
+				<span id="err"></span></li>	
+			<li><input type="password" placeholder="Enter Password" name="psw" required></li>
+			<!--<li><input type="password" placeholder="ReEnter Password" name="rpsw" required></li>
+			<li><input type="text" placeholder="Enter Name" name="nam" required></li>
+			<li><input type="text" placeholder="Enter City" name="cit" required></li>
+			<li><input type="text" placeholder="Enter Email" name="ema" required></li>
+			<li><input type="text" placeholder="Enter Phone Number" name="num" required></li>-->
+			<li><button type="submit">Register</button></li>
+			<li><button type="button" class="cnl-button"><a href="page1.jsp" style="text-decoration: none">Cancel</a></button></li>
+		</ul>
+	</div>
+</form>
+</div>
+<script type="text/javascript">
+function formValidation()
+{
+	var uid = document.registration.uname;
+	var passid = document.registration.psw;
+	var uname = document.registration.nam;
+	var uadd = document.registration.cit;
+//var ucountry = document.registration.country;
+//var uzip = document.registration.zip;
+	var uemail = document.registration.email;
+//var umsex = document.registration.msex;
+//var ufsex = document.registration.fsex; 
+	if(userid_validation(uid,5,12))
+	{
+		if(passid_validation(passid,7,12))
+		{
+			if(allLetter(uname))
+			{
+				if(alphanumeric(uadd))
+				{	 
+					if(ValidateEmail(uemail))
+					{
+					}	 
+				}
+			} 
+		}
+	}
+	return false;
+}
+
+function userid_validation(uid,mx,my)
+{
+	var uid_len = uid.value.length;
+	if (uid_len == 0 || uid_len >= my || uid_len < mx)
+	{
+		alert("User Id should not be empty / length be between "+mx+" to "+my);
+		uid.focus();
+		return false;
+	}
+	return true;
+}
+
+function passid_validation(passid,mx,my)
+{
+	var passid_len = passid.value.length;
+	if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+	{
+		alert("Password should not be empty / length be between "+mx+" to "+my);
+		passid.focus();
+		return false;
+	}
+	return true;
+}
+
+function allLetter(uname)
+{ 
+	var letters = /^[A-Za-z]+$/;
+	if(uname.value.match(letters))
+	{
+		return true;
+	}
+	else
+	{
+		alert('Username must have alphabet characters only');
+		uname.focus();
+		return false;
+	}
+}
+
+function alphanumeric(uadd)
+{ 
+	var letters = /^[0-9a-zA-Z]+$/;
+	if(uadd.value.match(letters))
+	{
+		return true;
+	}
+	else
+	{
+		alert('User address must have alphanumeric characters only');
+		uadd.focus();
+		return false;
+	}
+}
+
+function ValidateEmail(uemail)
+{
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(uemail.value.match(mailformat))
+	{
+		return true;
+	}
+	else
+	{
+		alert("You have entered an invalid email address!");
+		uemail.focus();
+		return false;
+	}
+}
+
+
+
+</script>
+</body>
+</html>

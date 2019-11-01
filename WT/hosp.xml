@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hospital_data>
+	<hospital>
+		<details>
+			<id>241117</id>
+			<name>Apollo</name>
+			<location>Chennai</location>
+		</details>
+		<patient>
+			<doc_id>D55</doc_id>
+			<pid>111234</pid>
+			<dob>29-sep-1997</dob>
+			<illness>Asthma</illness>
+			<doj>20-jun-2018</doj>
+		</patient>
+		<patient>
+			<doc_id>D89</doc_id>
+			<pid>111987</pid>
+			<dob>10-jan-1999</dob>
+			<illness>Wheezing</illness>
+			<doj>29-aug-2019</doj>
+		</patient>
+		<doctor>
+			<doc_id>D55</doc_id>
+			<dname>xyz</dname>
+			<expert>immunologist</expert>
+		</doctor>
+		<doctor>
+			<doc_id>D89</doc_id>
+			<dname>abc</dname>
+			<expert>Neck</expert>
+		</doctor>
+	</hospital>
+</hospital_data>

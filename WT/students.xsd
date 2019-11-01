@@ -1,0 +1,22 @@
+<?xml version = "1.0"?>
+
+<xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema">
+<xs:element name = 'products'>
+<xs:complexType>
+<xs:sequence>
+<xs:element name = 'product' type = 'ProductType' minOccurs = '0'
+maxOccurs = 'unbounded' />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name = "ProductType">
+<xs:sequence>
+<xs:element name = "category" type = "xs:string"/>
+<xs:element name = "brand" type = "xs:string"/>
+<xs:element name = "modelno" type = "xs:positiveInteger"/>
+<xs:element name = "name" type = "xs:string"/>
+<xs:element name = "Price" type = "xs:positiveInteger"/>
+</xs:sequence>
+<xs:attribute name = 'id' type = 'xs:positiveInteger'/>
+</xs:complexType>
+</xs:schema>

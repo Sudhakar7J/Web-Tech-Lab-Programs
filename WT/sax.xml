@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<employeedb> 
+    <employee>
+	<empid>101</empid>
+	<birthdate>30/03/1989</birthdate>
+	<name>
+		<firstname>Ramu</firstname>
+		<lastname>Somu</lastname>
+	</name>
+	<salary>35000</salary>
+	<gender>Male</gender>
+	<title>Developer</title>
+	<deptname>Software</deptname>
+	<hiredate>13/05/2010</hiredate>
+    </employee>
+</employeedb>
